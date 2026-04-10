@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface TheaterRepo extends JpaRepository<Theater, Long> {
-    List<Theater> findByTheater(String city);
+    List<Theater> findByCity(String city);
 
 }

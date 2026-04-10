@@ -25,6 +25,6 @@ public class Seat {
     private Double basePrice;
 
     @ManyToOne
-    @JoinColumn(name="screen", nullable = false)
+    @JoinColumn(name="screen_id", nullable = false)
     private Screen screen;
 }

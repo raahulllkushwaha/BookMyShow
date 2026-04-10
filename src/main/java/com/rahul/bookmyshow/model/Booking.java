@@ -19,15 +19,18 @@ public class Booking {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String bookingNumer;
+    private String bookingNumber;
 
     @Column(nullable = false)
     private LocalDateTime bookingTime;
 
     @ManyToOne
-    @Column(name="show_id",nullable = false)
+    @JoinColumn(name="show_id",nullable = false)
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name="show_id", nullable = false)
+    private Show show;
     @Column(nullable = false)
     private String status;
 

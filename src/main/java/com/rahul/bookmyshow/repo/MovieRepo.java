@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface MovieRepo extends JpaRepository<Movie, Long> {
+
     List<Movie> findByLanguage(String language);
 //    Optional<Movie> findByBookingNumber(String bookingNumber);
     List<Movie> findByGenre(String genre);

@@ -166,20 +166,7 @@ public class BookingService {
       movieDto.setPosterUrl(booking.getShow().getMovie().getPosterUrl());
       showDto.setMovie(movieDto);
 
-      ScreenDto screenDto = new ScreenDto();
-      screenDto.setId(booking.getShow().getScreen().getId());
-      screenDto.setName(booking.getShow().getScreen().getName());
-      screenDto.setTotalSeats(booking.getShow().getScreen().getTotalSeats());
-
-
-      TheaterDto theaterDto = new TheaterDto();
-      theaterDto.setId(bookingDto.getShow().getScreen().getTheater().getId());
-      theaterDto.setName(bookingDto.getShow().getScreen().getTheater().getName());
-      theaterDto.setAddress(bookingDto.getShow().getScreen().getTheater().getAddress());
-      theaterDto.setCity(bookingDto.getShow().getScreen().getTheater().getCity());
-      theaterDto.setTotalScreens(bookingDto.getShow().getScreen().getTheater().getTotalScreens());
-
-      screenDto.setTheater(theaterDto);
+      ScreenDto screenDto = getScreenDto(booking, bookingDto);
       showDto.setScreen(screenDto);
       bookingDto.setShow(showDto);
 
@@ -213,4 +200,22 @@ public class BookingService {
       }
       return bookingDto;
   }
+
+    private static ScreenDto getScreenDto(Booking booking, BookingDto bookingDto) {
+        ScreenDto screenDto = new ScreenDto();
+        screenDto.setId(booking.getShow().getScreen().getId());
+        screenDto.setName(booking.getShow().getScreen().getName());
+        screenDto.setTotalSeats(booking.getShow().getScreen().getTotalSeats());
+
+
+        TheaterDto theaterDto = new TheaterDto();
+        theaterDto.setId(bookingDto.getShow().getScreen().getTheater().getId());
+        theaterDto.setName(bookingDto.getShow().getScreen().getTheater().getName());
+        theaterDto.setAddress(bookingDto.getShow().getScreen().getTheater().getAddress());
+        theaterDto.setCity(bookingDto.getShow().getScreen().getTheater().getCity());
+        theaterDto.setTotalScreens(bookingDto.getShow().getScreen().getTheater().getTotalScreens());
+
+        screenDto.setTheater(theaterDto);
+        return screenDto;
+    }
 }

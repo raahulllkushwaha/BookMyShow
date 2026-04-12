@@ -120,7 +120,7 @@ public class ShowService {
                 show.getScreen().getTheater().getName(),
                 show.getScreen().getTheater().getAddress(),
                 show.getScreen().getTheater().getCity(),
-                show.getScreen().getTheater().getTotalScreen().size()
+                show.getScreen().getTheater().getTotalScreen()
         );
 
         showDto.setScreen(new ScreenDto(

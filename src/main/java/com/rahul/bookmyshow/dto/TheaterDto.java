@@ -1,8 +1,11 @@
 package com.rahul.bookmyshow.dto;
 
+import com.rahul.bookmyshow.model.Screen;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -12,6 +15,6 @@ public class TheaterDto {
     private String name;
     private String address;
     private String city;
-    private Integer totalScreens;
+    private List<Screen> totalScreens;
 
 }

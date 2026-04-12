@@ -40,18 +40,18 @@ public class TheaterService {
                 .map(this::mapToDto).collect(Collectors.toList());
     }
 //update
-    public TheaterDto updateTheater(Long id, TheaterDto theaterDto){
-        Theater theater = theaterRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Theater not found with id."));
-        theater.setId(theaterDto.getId());
-        theater.setName(theaterDto.getName());
-        theater.setAddress(theaterDto.getAddress());
-        theater.setCity(theaterDto.getCity());
-        theater.setTotalScreen(theaterDto.getTotalScreens());
-
-       Theater updateTheater = theaterRepo.save(theater);
-        return mapToDto(updateTheater);
-    }
+//    public TheaterDto updateTheater(Long id, TheaterDto theaterDto){
+//        Theater theater = theaterRepo.findById(id)
+//                .orElseThrow(() -> new ResourceNotFoundException("Theater not found with id."));
+//        theater.setId(theaterDto.getId());
+//        theater.setName(theaterDto.getName());
+//        theater.setAddress(theaterDto.getAddress());
+//        theater.setCity(theaterDto.getCity());
+//        theater.setTotalScreen(theaterDto.getTotalScreens());
+//
+//       Theater updateTheater = theaterRepo.save(theater);
+//        return mapToDto(updateTheater);
+//    }
 //end
     private TheaterDto mapToDto(Theater theater) {
         TheaterDto theaterDto = new TheaterDto();

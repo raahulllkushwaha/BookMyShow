@@ -38,6 +38,7 @@ public class UserService {
         user.setEmail(userDto.getEmail());
         user.setName(userDto.getName());
         user.setPhoneNumber(userDto.getPhoneNumber());
+        user.setPassword(userDto.getPassword());
         return user;
     }
 
@@ -47,6 +48,8 @@ public class UserService {
         userDto.setName(user.getName());
         userDto.setEmail(user.getEmail());
         userDto.setPhoneNumber(user.getPhoneNumber());
+        userDto.setPassword(user.getPassword());
+
         return userDto;
     }
 }

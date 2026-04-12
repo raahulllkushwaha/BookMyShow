@@ -39,7 +39,7 @@ public class BookingService {
                 .orElseThrow(()->new ResourceNotFoundException("User Not Found."));
 
         Show show = showRepo.findById(bookingRequest.getShowId())
-                .orElseThrow(()-> new SeatUnavailableException("Seat not available."));
+                .orElseThrow(()-> new SeatUnavailableException("Show not found."));
 
         List<ShowSeat> selectedSeats = showSeatRepo.findAllById(bookingRequest.getSeatIds());
 
@@ -138,7 +138,7 @@ public class BookingService {
         BookingDto bookingDto = new BookingDto();
         bookingDto.setBookingNumber(booking.getBookingNumber());
         bookingDto.setBookingTime(booking.getBookingTime());
-        bookingDto.setStatus(bookingDto.getStatus());
+        bookingDto.setStatus(booking.getStatus());
         bookingDto.setTotalAmount(booking.getAmount());
 
         // user

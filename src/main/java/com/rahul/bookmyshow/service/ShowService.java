@@ -46,7 +46,16 @@ public class ShowService {
         show.setEndTime(showDto.getEndTime());
 
         Show savedShow = showRepo.save(show);
-
+        List<ShowSeat> showSeats = screen.getSeats().stream()
+                .map(seat -> {
+                    ShowSeat showSeat = new ShowSeat();
+                    showSeat.setShow(savedShow);
+                    showSeat.setSeat(seat);
+                    showSeat.setStatus("AVAILABLE");
+                    showSeat.setPrice(seat.getBasePrice());
+                    return showSeat;
+                }).collect(Collectors.toList());
+        showSeatRepo.saveAll(showSeats);
         List<ShowSeat> availableSeats =
                 showSeatRepo.findByShowIdAndStatus(savedShow.getId(), ("AVAILABLE"));
         return mapToDto(savedShow, availableSeats);

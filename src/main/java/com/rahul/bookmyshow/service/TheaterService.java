@@ -6,6 +6,7 @@ import com.rahul.bookmyshow.exception.ResourceNotFoundException;
 import com.rahul.bookmyshow.model.Movie;
 import com.rahul.bookmyshow.model.Theater;
 import com.rahul.bookmyshow.repo.TheaterRepo;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,7 @@ public class TheaterService {
         return mapToDto(theater);
     }
 
-    private List<TheaterDto> getAllTheater(){
+    public List<TheaterDto> getAllTheater(){
         List<Theater> theaters = theaterRepo.findAll();
         return theaters.stream()
                 .map(this::mapToDto).collect(Collectors.toList());
@@ -71,5 +72,16 @@ public class TheaterService {
         theater.setCity(theaterDto.getCity());
         theater.setTotalScreen(theaterDto.getTotalScreens());
         return theater;
+    }
+
+    public TheaterDto addTheater(@Valid TheaterDto theaterDto) {
+        // Convert DTO to Entity
+        Theater theater = mapToEntity(theaterDto);
+
+        // Save to Database
+        Theater savedTheater = theaterRepo.save(theater);
+
+        // Convert back to DTO and return
+        return mapToDto(savedTheater);
     }
 }

@@ -218,4 +218,6 @@ public class BookingService {
         screenDto.setTheater(theaterDto);
         return screenDto;
     }
+
+
 }

@@ -24,4 +24,9 @@ public class BookingController {
     public ResponseEntity<BookingDto> getBookingById(@PathVariable Long id){
         return ResponseEntity.ok(bookingService.getBookingById(id));
     }
+    @PutMapping("/{id}/cancel")
+    public ResponseEntity<String> cancelBooking(@PathVariable Long id) {
+        bookingService.cancelBooking(id);
+        return ResponseEntity.ok("Booking cancelled successfully, and seats have been released.");
+    }
 }

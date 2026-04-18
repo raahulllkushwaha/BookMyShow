@@ -4,6 +4,8 @@ import com.rahul.bookmyshow.dto.UserDto;
 import com.rahul.bookmyshow.exception.ResourceNotFoundException;
 import com.rahul.bookmyshow.model.User;
 import com.rahul.bookmyshow.repo.UserRepo;
+import jakarta.validation.Valid;
+import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,4 +54,32 @@ public class UserService {
 
         return userDto;
     }
+
+
+    public UserDto updateUser(Long id, UserDto userDto) {
+        // 1. Check if user exists
+        User user = userRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+
+        // 2. Update the fields
+        user.setName(userDto.getName());
+        user.setEmail(userDto.getEmail());
+        user.setPhoneNumber(userDto.getPhoneNumber());
+
+        // 3. Save to database
+        User updatedUser = userRepo.save(user);
+
+        return mapToDto(updatedUser);
+    }
+
+    public void deleteUser(Long id) {
+        // 1. Check if user exists before deleting
+        User user = userRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+
+        // 2. Delete from database
+        userRepo.delete(user);
+    }
+
 }
+
